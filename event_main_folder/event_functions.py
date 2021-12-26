@@ -145,13 +145,26 @@ def print_menu():
             case "a":
                 add_event()
             case "b":
+                if len(lis_events) == 0:
+                    print("You don`t have events in your file")
                 for dictionary in lis_events:
                     print(
                         f"{dictionary['title']} start in {time_date(dictionary['start-time'])} and is finished in {time_date(dictionary['end-time'])}")
+            case "c":
+                command = input("What is title of the event that you want to delete?\n").strip().lower().capitalize()
+                if len(lis_events) >= 1:
+                    for i in range(len(lis_events)):
+                        if lis_events[i]["title"] == command:
+                            del lis_events[i]
+                            with open('events.json', 'w') as f:
+                                json.dump(lis_events, f)
+                            print(f"You have deleted {command} event")
+                            print_menu()
             case "e":
                 exit()
             case _:
-                print("to be continue...")
+                print("You didn`t take the right menu.")
+                print_menu()
 
 
 print_menu()
