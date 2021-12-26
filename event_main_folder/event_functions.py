@@ -1,4 +1,11 @@
 from datetime import datetime
+import json
+import os
+
+
+def is_file_empty(f_path):
+    # Check if file is empty if is size is 0 bytes
+    return os.path.exists(f_path) and os.stat(f_path).st_size == 0
 
 
 def time_date(elem):
@@ -16,7 +23,13 @@ def get_word_in_list_of_dic(word, list_of_dic, key):
     return word_in_dict
 
 
-lis_events = []
+with open("events.json", "w") as file:
+    file_path = 'events.json'
+    is_empty = is_file_empty(file_path)
+    if not is_empty:
+        lis_events = json.load(file)
+    else:
+        lis_events = []
 
 
 def make_dic_word(word, dic_temp, key):
@@ -92,22 +105,27 @@ def add_event():
         command = input("Do you want to make an event?Y/N \n").strip().lower()
         dic_temp = {"title": "", "start-time": "", "end-time": ""}
         if command == "y":
-            command = input("What is your event title? \n").strip().lower().capitalize()
-            make_dic_word(command, dic_temp, "title")
-            command = input("What is your event start time? DD.MM.YYYY, hour:minute \n")
-            make_dic_word(command, dic_temp, "start-time")
-            command = input("What is your event end time? DD.MM.YYYY, hour:minute \n")
-            make_dic_word(command, dic_temp, "end-time")
-            print(dic_temp)
-            lis_events.append(dic_temp)
+            try:
+                command = input("What is your event title? \n").strip().lower().capitalize()
+                make_dic_word(command, dic_temp, "title")
+                command = input("What is your event start time? DD.MM.YYYY, hour:minute \n")
+                make_dic_word(command, dic_temp, "start-time")
+                command = input("What is your event end time? DD.MM.YYYY, hour:minute \n")
+                make_dic_word(command, dic_temp, "end-time")
+                print(dic_temp)
+                lis_events.append(dic_temp)
+                with open("events.json", "w") as f:
+                    json.dump(lis_events, f)
+
+            except 'month must be in 1..12' or 'catching classes that do not inherit from BaseException is not allowed':
+                print("We have an error on your date time, please rewrite.")
+
         elif command == "n":
             print("Have a nice day!")
             break
         else:
             print("You didn`t make a right answer...")
             print_menu()
-
-    print(lis_events)
 
 
 def print_menu():
