@@ -1,6 +1,7 @@
-from datetime import datetime
 import json
 import os
+from datetime import datetime
+from pprint import pprint
 
 
 def is_file_empty(f_path):
@@ -23,7 +24,7 @@ def get_word_in_list_of_dic(word, list_of_dic, key):
     return word_in_dict
 
 
-with open("events.json", "w") as file:
+with open("events.json") as file:
     file_path = 'events.json'
     is_empty = is_file_empty(file_path)
     if not is_empty:
@@ -114,11 +115,14 @@ def add_event():
                 make_dic_word(command, dic_temp, "end-time")
                 print(dic_temp)
                 lis_events.append(dic_temp)
-                with open("events.json", "w") as f:
-                    json.dump(lis_events, f)
+                if dic_temp:
+                    with open("events.json", 'w') as f:
+                        json.dump(lis_events, f)
 
-            except 'month must be in 1..12' or 'catching classes that do not inherit from BaseException is not allowed':
+            except 'month must be in 1..12':
                 print("We have an error on your date time, please rewrite.")
+            except 'catching classes that do not inherit from BaseException is not allowed':
+                print("Error in writing....")
 
         elif command == "n":
             print("Have a nice day!")
@@ -140,8 +144,12 @@ def print_menu():
         match command:
             case "a":
                 add_event()
+            case "b":
+                for dictionary in lis_events:
+                    print(
+                        f"{dictionary['title']} start in {time_date(dictionary['start-time'])} and is finished in {time_date(dictionary['end-time'])}")
             case "e":
-                break
+                exit()
             case _:
                 print("to be continue...")
 
