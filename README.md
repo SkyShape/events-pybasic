@@ -15,4 +15,4 @@
 
 > You must have python 3.10 =>>>> events menu
 
-[comment]: <> (create the test functions in test events file)
+[comment]: <> (create the test functions in test events file, create a class object)
