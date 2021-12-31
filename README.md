@@ -1,5 +1,5 @@
 # Menu events
-> This will use a file to store/get/edit events.(file is not done => listings events)
+> This will use a file to store/get/edit events.(file is json type)
 
 - [x] create an event  
 - [x] listings your events
