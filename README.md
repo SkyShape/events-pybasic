@@ -1,10 +1,17 @@
 # Menu events
 > This will use a file to store/get/edit events.(file is not done => listings events)
 
-- [ ] create an event ¦working on¦ 
-- [ ] listings your events... in progress
-- [ ] delete event... in progress
-- [ ] edit event... in progress
-- [ ] exit ¬done
+- [x] create an event  
+- [x] listings your events
+- [x] delete event
+- [x] edit event 
+- [x] exit ¬done
 
-python 3.10 =>>>> events menu
+## Clone project
+
+>> git clone  https://github.com/SkyShape/events-pybasic.git
+>> go in event_main file and run it
+
+> You must have python 3.10 =>>>> events menu
+
+[comment]: <> (create the test functions in test events file)
