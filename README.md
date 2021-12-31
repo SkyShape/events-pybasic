@@ -9,8 +9,9 @@
 
 ## Clone project
 
->> git clone  https://github.com/SkyShape/events-pybasic.git
->> go in event_main file and run it
+> git clone  https://github.com/SkyShape/events-pybasic.git
+
+> go in event_main file and run it
 
 > You must have python 3.10 =>>>> events menu
 
