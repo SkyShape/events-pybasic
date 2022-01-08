@@ -166,7 +166,7 @@ def add_event():
 def print_menu():
     global lis_events
     while True:
-        print('\t Welcome!!! \n Please select your menu:')
+        print('\t Welcome!!! \n Please select your menu:(a, b, c ,d or e)')
         print('\ta. Create event')
         print('\tb. Listings events')
         print('\tc. Delete event')
